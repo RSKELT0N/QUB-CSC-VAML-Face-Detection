@@ -1,22 +1,19 @@
 close all;
 clear variables;
 
-% Load
-[images, labels] = loadFaceImages("face_train.cdataset", 1);
-[testImages, testLabels] = loadFaceImages("face_test.cdataset", 1);
+addpath ml/
 
-train.data = images;
-train.labels = labels;
+%% Load
+train = loadData("face_train.cdataset", 1);
+test = loadData("face_test.cdataset", 1);
 
-test.data = images;
-train.labels = labels;
+%% Preprocess
 
-
-% Preprocess
-
-% Train
+%% Train
 model = knn(train, 11);
+%scores = evaluate(model, test);
 
-testLabel = model.classify(train.data(1, :));
+modelSvm = svm(train);
+scores = evaluate(modelSvm, test)
 
 
