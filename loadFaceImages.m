@@ -1,4 +1,4 @@
-function [images labels] = loadFaceImages(filename,sampling)
+function [images, labels] = loadFaceImages(filename,sampling)
 
 if nargin<2
     sampling =1;
@@ -23,16 +23,16 @@ numberOfImages = fscanf(fp,'%d',1);
 images=[];
 labels =[];
 for im=1:sampling:numberOfImages
-    
     label = fscanf(fp,'%d',1);
     
     labels= [labels; label];
     
     imfile = fscanf(fp,'%s',1);
     I=imread(imfile);
+    I = histeq(I); %preprocessing
     if size(I,3)>1
         I=rgb2gray(I);
-   end
+    end
     vector = reshape(I,1, size(I, 1) * size(I, 2));
     vector = double(vector); % / 255;
     
@@ -115,6 +115,11 @@ for im=1:sampling:numberOfImages
             labels= [labels; label];      
         end
 
+    end
+
+    %sampling rate
+    for i = 1:sampling
+        fgets(fp)
     end
     
 end
