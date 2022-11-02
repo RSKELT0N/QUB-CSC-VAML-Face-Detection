@@ -29,7 +29,6 @@ for im=1:sampling:numberOfImages
     
     imfile = fscanf(fp,'%s',1);
     I=imread(imfile);
-    I = histeq(I); %preprocessing
     if size(I,3)>1
         I=rgb2gray(I);
     end
@@ -118,9 +117,9 @@ for im=1:sampling:numberOfImages
     end
 
     %sampling rate
-    for i = 1:sampling
-        fgets(fp)
-    end
+%     for i = 1:sampling
+%         fgets(fp)
+%     end
     
 end
 
