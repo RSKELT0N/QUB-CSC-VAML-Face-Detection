@@ -1,4 +1,4 @@
-function [images, labels] = loadFaceImages(filename,sampling)
+function [images, labels] = loadFaceImages(filename, sampling, feature)
 
 if nargin<2
     sampling =1;
@@ -32,8 +32,7 @@ for im=1:sampling:numberOfImages
     if size(I,3)>1
         I=rgb2gray(I);
     end
-    vector = reshape(I,1, size(I, 1) * size(I, 2));
-    vector = double(vector); % / 255;
+    vector = featureExtraction(I, feature);
     
     images= [images; vector];
     
@@ -41,75 +40,63 @@ for im=1:sampling:numberOfImages
         
         if label==1
             Itemp =fliplr(I);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(I,1);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(I,-1);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(I,[0 1]);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(I,[0 -1]);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(fliplr(I),1);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(fliplr(I),-1);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(fliplr(I),[0 1]);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
             Itemp =circshift(fliplr(I),[0 -1]);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
         else
             Itemp =fliplr(I);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
-            Itemp =flipud(I);
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            Itemp = flipud(I);
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];
             
-            Itemp =flipud(fliplr(I));
-            vector = reshape(Itemp,1, size(I, 1) * size(I, 2));
-            vector = double(vector); % / 255;
+            Itemp = flipud(fliplr(I));
+            vector = featureExtraction(I, feature);
             images= [images; vector];
             labels= [labels; label];      
         end

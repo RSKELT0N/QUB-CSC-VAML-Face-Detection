@@ -1,6 +1,6 @@
-function data = loadData(path, sampling)
+function data = loadData(path, sampling, feature)
     
-    [images, labels] = loadFaceImages(path, sampling);
+    [images, labels] = loadFaceImages(path, sampling, feature);
     data.data = images;
     data.labels = labels;
     data.size = size(images, 1);
