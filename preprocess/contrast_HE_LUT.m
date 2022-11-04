@@ -1,6 +1,7 @@
 function [LUT] = contrast_HE_LUT(Iin)
     LUT = zeros(1, 256);
-    hist = double(myHistogram(Iin));
+    hist = double(histcounts(Iin, 'BinLimits', [0, 256], 'BinWidth', 1));
+    
     [rows, cols] = size(Iin);
     CH = cumsum(hist);
 
