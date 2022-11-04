@@ -1,11 +1,13 @@
 close all;
 clear variables;
 
-addpath ml/
+addpath ./ml/
+addpath ./lib/
+addpath ./preprocess/
 
 %% Load
-train = loadData("face_train.cdataset", 1);
-test = loadData("face_test.cdataset", 1);
+train = loadData("face_train.cdataset", 1, "Gabor");
+test = loadData("face_test.cdataset", 1, "Gabor");
 
 %% Preprocess
 
