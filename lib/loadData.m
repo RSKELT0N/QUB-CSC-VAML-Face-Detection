@@ -7,5 +7,5 @@ function data = loadData(path, sampling, feature, preprocessMethod)
     data.data = images;
     data.labels = labels;
     data.size = size(images, 1);
-    data.features = size(images, 1);
+    data.features = size(images, 2);
 end
