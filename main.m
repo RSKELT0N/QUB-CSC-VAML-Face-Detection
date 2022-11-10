@@ -5,7 +5,7 @@ addpath ./ml/
 addpath ./lib/
 addpath ./preprocess/
 
-feature = options.FEATURE_GABOR;
+feature = options.FEATURE_DR_PCA;
 preprocess = options.PREPROCESS_HE;
 
 %% Load + PreProcess + Feature Extraction
