@@ -1,0 +1,22 @@
+function [data] = preprocess(data, preprocessMethod)
+    [rows, cols] = size(data);
+    preprocessedData = zeros(rows, cols);
+
+    for image = 1:rows
+        I = data(image, :);
+        I = uint8(I);
+        I = reshape(I, [27 18]);
+        switch preprocessMethod
+            case "HE"
+                data = enhanceContrastHE(I);
+            case "LS"
+                data = enhanceContrastALS(I);
+            case "PL"
+                data = enhanceContrastAPL(I);
+            otherwise           
+        end
+        I = reshape(I, 1, row)
+        preprocessedData(image, :) = double(I);
+    end
+end
+

@@ -1,21 +1,28 @@
-function [preprocessedData] = preprocess(data, method)
+function [preprocessedData] = preprocess(data, preprocessMethod)
+
+    if (preprocessMethod == options.NULL)
+        preprocessedData = data;
+        return;
+    end
+
     [rows, cols] = size(data);
     preprocessedData = zeros(rows, cols);
 
     for image = 1:rows
-        currentImage = reshape(data(image, :), [27 18]);
-        currentImage = uint8(currentImage);
+        I = reshape(data(image, :), [27 18]);
+        I = uint8(I);
 
-        switch method
-            case "HE"
-                currentImage = enhanceContrastHE(currentImage);
-            case "LS"
-                currentImage = enhanceContrastALS(currentImage);
-            case "PL"
-                currentImage = enhanceContrastAPL(currentImage);
+        switch preprocessMethod
+            case options.PREPROCESS_HE
+                I = enhanceContrastHE(I);
+            case options.PREPROCESS_LS
+                I = enhanceContrastALS(I);
+            case options.PREPROCESS_PL
+                I = enhanceContrastAPL(I);          
         end
-        currentImage = reshape(currentImage, 1, 27 * 18);
-        preprocessedData(image, :) = double(currentImage);
+        
+        I = reshape(I, 1, size(I, 1) * size(I, 2));
+        preprocessedData(image, :) = double(I);
     end
 end
 

@@ -1,6 +1,9 @@
-function data = loadData(path, sampling, feature)
+function data = loadData(path, sampling, feature, preprocessMethod)
     
-    [images, labels] = loadFaceImages(path, sampling, feature);
+    [images, labels] = loadFaceImages(path, sampling);
+    images = preprocess(images, preprocessMethod);
+    images = featureExtraction(images, feature);
+
     data.data = images;
     data.labels = labels;
     data.size = size(images, 1);

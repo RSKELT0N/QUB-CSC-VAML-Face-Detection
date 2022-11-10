@@ -5,12 +5,12 @@ addpath ./ml/
 addpath ./lib/
 addpath ./preprocess/
 
-%% Load
-train = loadData("face_train.cdataset", 1, "Gabor");
-test = loadData("face_test.cdataset", 1, "Gabor");
+feature = options.FEATURE_GABOR;
+preprocess = options.PREPROCESS_HE;
 
-%% Preprocess
-train.data = preprocess(train.data, "HE");
+%% Load + PreProcess + Feature Extraction
+train = loadData("face_train.cdataset", 1, feature, preprocess);
+test = loadData("face_test.cdataset", 1, feature, preprocess);
 
 %% Train
 model = knn(train, 11);

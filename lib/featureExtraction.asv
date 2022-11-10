@@ -1,0 +1,17 @@
+function [vector] = featureExtraction(data, feature)
+    [rows, cols] = size(data);
+
+    for image = 1:rows
+        I = data(image, :);
+        I = reshape(I, [27 18]);
+        I = uint8(I);
+        switch feature
+            case "Gabor"
+                vector = gabor_feature_vector(I);
+            otherwise
+                vector = reshape(I, 1, size(I, 1) * size(I, 2));
+        end
+        vector = double(vector);
+    end
+end
+
