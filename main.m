@@ -8,10 +8,10 @@ addpath ./featureExtraction/
 
 rng(100);
 
-model.feature = modelOptions.FEATURE_DR(200);
+model.feature = modelOptions.FEATURE_EDGES;
 model.feature2 = modelOptions.FEATURE_NONE;
 model.ml = modelOptions.ML_SVM;
-model.preprocess = modelOptions.PREPROCESS_HE;
+model.preprocess = modelOptions.PREPROCESS_NONE;
 
 %% Load
 train = loadData("face_train.cdataset", 1);
