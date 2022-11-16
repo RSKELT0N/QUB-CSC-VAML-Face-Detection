@@ -1,6 +1,6 @@
 function model = knn(train, k)
 
-    function class = classify(data) 
+    function probability = classify(data) 
         distances = zeros(1, size(train.data, 1));
         distances(1, :) = intmax;
          
@@ -11,11 +11,9 @@ function model = knn(train, k)
         [~, indices] = sort(distances);
     
         labels = train.labels(indices(1:k));
-        class = mode(labels);
+        probability = size(find(labels==1), 1)/k;
     end
 
     model.classify = @classify;
+
 end
-
-
-
