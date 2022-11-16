@@ -5,6 +5,7 @@ classdef modelOptions
 
         FEATURE_NONE = @noFeature;
         FEATURE_GABOR = @gaborFeatureVector;
+        FEATURE_EDGES = @edgeExtraction;
         FEATURE_DR = @dimensionalityReduction;
 
         PREPROCESS_NONE = @noPreprocess;
