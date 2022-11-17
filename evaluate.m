@@ -1,12 +1,12 @@
 function scores = evaluate(model, testData)
-    predictions = zeros(1, size(testData.data, 1));
+    predictions = zeros(size(testData.data, 1), 1);
 
     for i = 1:size(testData.data, 1)
          probability = model.classify(testData.data(i, :));
          if probability > 0.5
-            predictions(1, i) = 1;
+            predictions(i, 1) = 1;
          else
-             predictions(1, i) = -1;
+             predictions(i, 1) = -1;
          end
     end
 

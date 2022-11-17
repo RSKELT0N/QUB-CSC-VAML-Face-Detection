@@ -24,5 +24,9 @@ function model = createModel(preprocess, feature, dr, ml)
     %% Test
     disp("Evaluating")
     scores = evaluate(model, test)
+
+
     model.scores = scores;
+    model.test = test;
+    model.train = train;
 end
