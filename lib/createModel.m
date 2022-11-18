@@ -13,7 +13,7 @@ function model = createModel(preprocess, feature, dr, ml)
     
     %% Test
     disp("Evaluating")
-    scores = evaluate(model, test)
+    scores = evaluate(model, test);
 
     model.scores = scores;
     model.test = test;
