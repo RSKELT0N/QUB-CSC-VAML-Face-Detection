@@ -1,21 +1,23 @@
 function curve = roc(model, testData)
 
     sampling = 20;
+    probabilities = zeros(size(testData.data, 1), 1);
     tprs = zeros(sampling+1, 1);
     fprs = zeros(sampling+1, 1);
 
 
     tprs(1, 1) = 1;
     fprs(1, 1) = 1;
-
+    
+    for i = 1:size(testData.data, 1)
+        probabilities(i, 1) = model.classify(testData.data(i, :));
+    end
     
     for i = 1:sampling
         threshold = (i*(100/sampling))/100;
         predictions = zeros(size(testData.data, 1), 1);
-        
         for j = 1:size(testData.data, 1)
-            probability = model.classify(testData.data(j, :));
-            if probability > threshold
+            if probabilities(j, 1) > threshold
                 predictions(j, 1) = 1;
             else
                 predictions(j, 1) = -1;
