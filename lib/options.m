@@ -2,16 +2,17 @@ classdef options
     properties (Constant = true)
         NONE = @noOperation
 
-        ML_KNN = @knnCreation;
-        ML_SVM = @svm;
+        KNN = @knnCreation;
+        SVM = @svm;
 
-        FEATURE_GABOR = @gaborFeatureVector;
-        FEATURE_EDGES = @edgeExtraction;
-        FEATURE_DR = @dimensionalityReduction;
+        GABOR = @gaborFeatureVector;
+        HOG = @hogFeatureVector;
+        EDGES = @edgeExtraction;
+        DR = @dimensionalityReduction;
 
-        PREPROCESS_HE = @enhanceContrastHE;
-        PREPROCESS_PL = @enhanceContrastAPL;
-        PREPROCESS_LS = @enhanceContrastALS;
+        HE = @enhanceContrastHE;
+        PL = @enhanceContrastAPL;
+        LS = @enhanceContrastALS;
     end
     
 end

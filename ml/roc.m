@@ -42,4 +42,6 @@ function curve = roc(model, testData)
     axis([0 1 0 1]);
     p(1).LineWidth = 2;
     p(2).Color = "black";
+
+    curve = p;
 end
